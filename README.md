@@ -1,15 +1,12 @@
-# EducaMove
+# EducaMove — distribuição pública
 
-- [Abrir no computador ou celular](https://lucasalbertinazzi.github.io/EducaMove-demo/)
-- [Baixar o APK Android](https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/latest/download/EducaMove.apk)
+- Web e APK: https://lucasalbertinazzi.github.io/EducaMove-demo/
+- Painel: https://lucasalbertinazzi.github.io/EducaMove-demo/painel/
+- APK: https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/download/v1.0.1-demo.2/EducaMove.apk
 
-Versão de demonstração: login e recuperação de senha são simulados.
-Use `demo@example.com` e `123456` para conhecer as telas atuais.
-Os cartões da tela inicial ainda não abrem funcionalidades.
+Conta fictícia: teste@educamove.local / EducaMove@123.
+Esta distribuição usa dados fictícios e alterações locais, sem conexão com contas ou banco reais.
+O painel demonstra os módulos administrativos; o APK possui as funções mobile atuais.
+Instalação manual Android com assinatura de testes. iOS usa o navegador para o painel.
 
-Para instalar no Android, baixe o APK e permita a instalação pelo navegador
-quando o sistema solicitar. Esta versão utiliza a assinatura de desenvolvimento.
-No iPhone ou iPad, use o link pelo navegador.
-
-Este repositório contém somente a distribuição compilada.
-O projeto e seu histórico de desenvolvimento permanecem privados.
+Este repositório contém somente a distribuição compilada. O código-fonte e o histórico do projeto EducaMove permanecem privados.
