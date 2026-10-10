@@ -1,6 +1,6 @@
 {
-    "name": "EducaMove",
-    "short_name": "EducaMove",
+    "name": "EducaMov",
+    "short_name": "EducaMov",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",

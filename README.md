@@ -1,4 +1,4 @@
-# EducaMove — ambiente integrado de homologação
+# EducaMov — ambiente integrado de homologação
 
 - Painel web: https://lucasalbertinazzi.github.io/EducaMove-demo/painel/
 - API: https://educamove-api.onrender.com/health/ready
