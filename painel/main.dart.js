@@ -55022,7 +55022,7 @@ $S:661}
 A.yE.prototype={
 iv(){var s,r,q,p=t.N
 if(!A.cr(["development","production"],p).n(0,"production"))throw A.h(A.aa("APP_ENV deve ser development ou production."))
-s=A.b6B("https://educamove-api.onrender.com")
+s=A.b6B("https://api.educamov.com.br")
 r=A.b6B("https://vcfwygvzbgkxqqjrddfe.supabase.co")
 q=!0
 if(s!=null)if(s.gBh())if(A.cr(["http","https"],p).n(0,s.gfj()))if(s.guJ().length===0)if(!s.gqR())if(!s.gwW())q=s.gdm().length!==0&&s.gdm()!=="/"
@@ -55059,7 +55059,7 @@ A.ajb.prototype={
 $2(a,b){return a.toLowerCase()==="authorization"},
 $S:659}
 A.b2l.prototype={
-$1(a){var s,r=null,q="https://educamove-api.onrender.com",p=a.b8($.b47(),t.FW),o=a.b8($.aix(),t.aq),n=A.blV(q,B.tV,!1,A.a1(["Accept","application/json","X-App-Channel",a.b8($.yp(),t.y)?"web":"mobile"],t.N,t.z),B.tV),m=new A.YV(A.b([B.Q9],t.i6))
+$1(a){var s,r=null,q="https://api.educamov.com.br",p=a.b8($.b47(),t.FW),o=a.b8($.aix(),t.aq),n=A.blV(q,B.tV,!1,A.a1(["Accept","application/json","X-App-Channel",a.b8($.yp(),t.y)?"web":"mobile"],t.N,t.z),B.tV),m=new A.YV(A.b([B.Q9],t.i6))
 m.O(m,B.a6J)
 s=new A.Xh($,m,$,new A.aqS(51200),!1)
 s.a8y$=n

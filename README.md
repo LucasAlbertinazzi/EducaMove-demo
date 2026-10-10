@@ -1,7 +1,7 @@
 # EducaMov — ambiente integrado de homologação
 
-- Painel web: https://lucasalbertinazzi.github.io/EducaMove-demo/painel/
-- API: https://educamove-api.onrender.com/health/ready
+- Painel web: https://educamov.com.br/painel/
+- API: https://api.educamov.com.br/health/ready
 
 O painel usa a API hospedada e PostgreSQL remoto. A prefeitura solicita seu cadastro no painel e aguarda aprovação do gestor. Após a aprovação, o responsável confirma o e-mail, define sua senha e configura autenticação de dois fatores.
 
