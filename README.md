@@ -1,12 +1,10 @@
-# EducaMove — distribuição pública
+# EducaMove — ambiente integrado de homologação
 
-- Web e APK: https://lucasalbertinazzi.github.io/EducaMove-demo/
-- Painel: https://lucasalbertinazzi.github.io/EducaMove-demo/painel/
-- APK: https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/download/v1.0.1-demo.2/EducaMove.apk
+- Painel web: https://lucasalbertinazzi.github.io/EducaMove-demo/painel/
+- API: https://educamove-api.onrender.com/health/ready
 
-Conta fictícia: teste@educamove.local / EducaMove@123.
-Esta distribuição usa dados fictícios e alterações locais, sem conexão com contas ou banco reais.
-O painel demonstra os módulos administrativos; o APK possui as funções mobile atuais.
-Instalação manual Android com assinatura de testes. iOS usa o navegador para o painel.
+O painel usa a API hospedada e PostgreSQL remoto. A prefeitura solicita seu cadastro no painel e aguarda aprovação do gestor. Após a aprovação, o responsável confirma o e-mail, define sua senha e configura autenticação de dois fatores.
 
-Este repositório contém somente a distribuição compilada. O código-fonte e o histórico do projeto EducaMove permanecem privados.
+O APK anterior, disponível nas releases de demonstração, usa dados locais e não corresponde ao painel integrado. A distribuição nas lojas Android/iOS e a integração WhatsApp ainda dependem das respectivas configurações externas.
+
+Ambiente gratuito de homologação: a API pode pausar por inatividade. Nenhuma credencial é pré-preenchida ou publicada. Este repositório contém apenas artefatos compilados; o código-fonte permanece privado.
