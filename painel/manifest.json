@@ -3,8 +3,8 @@
     "short_name": "EducaMov",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#FFFFFF",
-    "theme_color": "#245B86",
+    "background_color": "#0F1722",
+    "theme_color": "#0F1722",
     "description": "Painel administrativo de reembolso do transporte escolar.",
     "prefer_related_applications": false,
     "icons": [
