@@ -60882,29 +60882,38 @@ A.aBQ.prototype={
 $0(){return this.a.dO($.d3().$1("/v1/platform/municipality-registrations"))},
 $S:0}
 A.aBP.prototype={
-$1(a1){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b=null,a="status",a0="approved"
-t.j.a(a1)
-s=J.aR(a1)
-if(s.gai(a1))return B.ahS
+$1(a3){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b=null,a="N\xe3o informado",a0="existing",a1="status",a2="approved"
+t.j.a(a3)
+s=J.aR(a3)
+if(s.gai(a3))return B.ahS
 r=t.p
 q=A.b([],r)
-for(s=s.ga6(a1),p=this.a,o=t.N,n=this.c,m=this.b,l=t.f,k=t.z;s.u();){j=s.gN()
+for(s=s.ga6(a3),p=this.a,o=t.N,n=this.c,m=this.b,l=t.f,k=t.z;s.u();){j=s.gN()
 i=J.aR(j)
-h=A.K(A.i(i.h(j,"name"))+" / "+A.i(i.h(j,"state")),b,b,b,A.w(p).ok.r,b,b,b)
-g=A.K("CNPJ: "+A.i(i.h(j,"cnpj"))+"\nRespons\xe1vel: "+A.i(i.h(j,"contact_name"))+"\nE-mail: "+A.i(i.h(j,"email"))+"\nTelefone: "+A.i(i.h(j,"phone")),b,b,b,b,b,b,b)
-f=i.h(j,a)
-A:{if("approved"===f){e="Aprovada"
-break A}if("rejected"===f){e="Recusada"
-break A}e="Aguardando aprova\xe7\xe3o"
-break A}e=A.b([h,g,A.K("Situa\xe7\xe3o: "+e,b,b,b,b,b,b,b)],r)
-if(i.h(j,"reason")!=null)e.push(A.K("Motivo: "+A.i(i.h(j,"reason")),b,b,b,b,b,b,b))
-if(J.c(i.h(j,a),"pending")){h=A.b([],r)
-for(g=A.a1(["approve","Aprovar prefeitura","reject","Recusar cadastro"],o,o),g=new A.AU(g,g.r,g.e,A.k(g).i("AU<1,2>"));g.u();){d=g.d
-d.toString
-c=m.gcK()!=null?b:new A.aBM(p,n,d,j)
-h.push(A.cp(A.K(d.b,b,b,b,b,b,b,b),c,b))}e.push(new A.q7(B.aO,12,0,B.aZ,h,b))}if(J.c(i.h(j,a),a0)){h=A.K(i.h(j,"invited_at")==null?"Enviar convite de acesso":"Conferir conta de acesso",b,b,b,b,b,b,b)
-e.push(A.o3(B.XD,h,m.gcK()!=null?b:new A.aBN(n,j,p)))}if(J.c(i.h(j,a),a0)){l.a(j)
-e.push(new A.a1O(A.nz(j,o,k),"/v1/platform/municipality-registrations/"+A.i(j.h(0,"id")),b))}q.push(A.r8(new A.aA(B.c5,A.ak(e,B.a2,B.h,B.j,0,B.m),b),b))}return A.ak(q,B.A,B.h,B.j,0,B.m)},
+h=i.h(j,"state")==null?A.a2(i.h(j,"name")):A.i(i.h(j,"name"))+" / "+A.i(i.h(j,"state"))
+h=A.K(h,b,b,b,A.w(p).ok.r,b,b,b)
+g=i.h(j,"cnpj")
+g=A.i(g==null?a:g)
+f=i.h(j,"contact_name")
+f=A.i(f==null?a:f)
+e=i.h(j,"email")
+e=A.i(e==null?a:e)
+d=i.h(j,"phone")
+g=A.K("CNPJ: "+g+"\nRespons\xe1vel: "+f+"\nE-mail: "+e+"\nTelefone: "+A.i(d==null?a:d),b,b,b,b,b,b,b)
+if(J.c(i.h(j,"source"),a0))f="Cadastro existente"
+else{c=i.h(j,a1)
+A:{if("approved"===c){f="Aprovada"
+break A}if("rejected"===c){f="Recusada"
+break A}f="Aguardando aprova\xe7\xe3o"
+break A}}f=A.b([h,g,A.K("Situa\xe7\xe3o: "+f,b,b,b,b,b,b,b)],r)
+if(i.h(j,"reason")!=null)f.push(A.K("Motivo: "+A.i(i.h(j,"reason")),b,b,b,b,b,b,b))
+if(J.c(i.h(j,a1),"pending")){h=A.b([],r)
+for(g=A.a1(["approve","Aprovar prefeitura","reject","Recusar cadastro"],o,o),g=new A.AU(g,g.r,g.e,A.k(g).i("AU<1,2>"));g.u();){e=g.d
+e.toString
+d=m.gcK()!=null?b:new A.aBM(p,n,e,j)
+h.push(A.cp(A.K(e.b,b,b,b,b,b,b,b),d,b))}f.push(new A.q7(B.aO,12,0,B.aZ,h,b))}if(J.c(i.h(j,a1),a2)&&!J.c(i.h(j,"source"),a0)){h=A.K(i.h(j,"invited_at")==null?"Enviar convite de acesso":"Conferir conta de acesso",b,b,b,b,b,b,b)
+f.push(A.o3(B.XD,h,m.gcK()!=null?b:new A.aBN(n,j,p)))}if(J.c(i.h(j,a1),a2)){l.a(j)
+f.push(new A.a1O(A.nz(j,o,k),"/v1/platform/municipality-registrations/"+A.i(j.h(0,"id")),b))}q.push(A.r8(new A.aA(B.c5,A.ak(f,B.a2,B.h,B.j,0,B.m),b),b))}return A.ak(q,B.A,B.h,B.j,0,B.m)},
 $S:1015}
 A.aBM.prototype={
 $0(){var s=this,r=s.c
@@ -61707,7 +61716,7 @@ $1(a){return new A.wr(this.a.f+"/licenses",null)},
 $S:327}
 A.aAi.prototype={
 $1(a){var s=null,r=this.a.e,q=this.b,p=t.p
-r=A.cd(A.kz(A.ak(A.b([A.K(A.i(r.h(0,"name"))+" / "+A.i(r.h(0,"state")),s,s,s,s,s,s,s),B.Q,A.tp(q,s),B.Q,B.atU],p),B.z,B.h,B.ay,0,B.m),s,s,s,s,B.an),s,480)
+r=A.cd(A.kz(A.ak(A.b([A.K(r.h(0,"state")==null?A.a2(r.h(0,"name")):A.i(r.h(0,"name"))+" / "+A.i(r.h(0,"state")),s,s,s,s,s,s,s),B.Q,A.tp(q,s),B.Q,B.atU],p),B.z,B.h,B.ay,0,B.m),s,s,s,s,B.an),s,480)
 return A.zf(A.b([A.cp(B.asB,new A.aAe(q,a),s),A.fv(B.at4,new A.aAf(a))],p),r,B.asE)},
 $S:159}
 A.aAe.prototype={
