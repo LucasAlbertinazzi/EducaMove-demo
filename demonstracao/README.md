@@ -1,7 +1,7 @@
-# EducaMove Demo — experiência do estudante
+# EducaMove Demo 1.0.8 — experiência do estudante
 
 - [Abrir a demonstração web](https://educamov.com.br/demonstracao/)
-- [Baixar o APK EducaMove Demo](https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/download/v1.0.0-demo-feed.20261011/EducaMove-Demo.apk)
+- [Baixar o APK EducaMove Demo](https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/download/v1.0.8-demo.9/EducaMove-Demo.apk)
 
 Quatro abas: Início com feed municipal, Frequência, Reembolso e Perfil.
 Perfil reúne a renovação anual e a segurança da sessão.

@@ -1,11 +1,11 @@
 {
-    "name": "EducaMove",
-    "short_name": "EducaMove",
+    "name": "EducaMov",
+    "short_name": "EducaMov",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#F7FAF9",
-    "theme_color": "#136F63",
-    "description": "EducaMove: rotas, comunicados e informações escolares.",
+    "background_color": "#FFFFFF",
+    "theme_color": "#245B86",
+    "description": "Painel administrativo de reembolso do transporte escolar.",
     "prefer_related_applications": false,
     "icons": [
         {
