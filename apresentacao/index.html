@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conheça o EducaMov: prefeitura, gestão e aplicativo do estudante. Explore telas, segurança e uma jornada de reembolso com dados fictícios.">
+  <meta name="theme-color" content="#1762e8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>EducaMov — apresentação interativa do sistema</title>
+  <link rel="icon" href="assets/icone.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="#conteudo" aria-label="EducaMov, início"><img src="assets/icone.png" width="48" height="48" alt=""><span>Educa<span>Mov</span></span></a>
+    <nav aria-label="Seções da apresentação"><a href="#plataformas">Plataformas</a><a href="#experimente">Experimente</a><a href="#telas">Telas</a><a href="#seguranca">Segurança</a></nav>
+    <button class="button secondary presentation-toggle" type="button" id="presentation-toggle">Modo apresentação</button>
+  </div></header>
+  <main id="conteudo">
+    <section class="cover" data-chapter="0" aria-labelledby="cover-title">
+      <div class="wrap hero">
+        <div class="hero-copy"><h1 id="cover-title">O transporte universitário,<br><span>conectado de ponta a ponta.</span></h1>
+          <p class="lead">Prefeitura, gestão e estudantes na mesma jornada. Conheça as telas e experimente os fluxos com dados fictícios.</p>
+          <div class="actions"><a class="button primary" href="#experimente">Experimentar o sistema <span aria-hidden="true">→</span></a><a class="button secondary" href="#plataformas">Conhecer as plataformas</a></div>
+          <p class="small">Prévia interativa sem login. Os exemplos ficam apenas nesta página.</p>
+        </div>
+        <div class="hero-product" aria-label="Prévia ilustrativa do painel e aplicativo com dados fictícios">
+          <div class="preview-browser"><div class="browser-bar"><span class="browser-dots" aria-hidden="true">● ● ●</span><span>EducaMov · demonstração</span></div>
+            <div class="preview-content"><div class="preview-heading"><img src="assets/icone.png" width="32" height="32" alt=""><strong>Prefeitura de Brotas</strong></div><p>Solicitações de outubro</p>
+              <div class="preview-tabs"><span>Todos os envios</span><span>Em análise</span></div>
+              <div class="preview-row preview-labels"><span>Estudante</span><span>Transporte</span><span>Status</span></div>
+              <div class="preview-row"><span>Pedro Lima</span><strong>R$ 360,00</strong><span class="badge in_review">Em análise</span></div>
+              <div class="preview-row"><span>Bruno Souza</span><strong>R$ 720,00</strong><span class="badge approved">Aprovado</span></div>
+              <div class="preview-row"><span>Rafael Costa</span><strong>R$ 400,00</strong><span class="badge pending">Correção</span></div>
+              <p class="preview-footnote">Conferência de documentos e histórico da decisão.</p>
+            </div>
+          </div>
+          <div class="preview-phone"><div class="phone-camera" aria-hidden="true"></div><div class="phone-time">9:41 <span aria-hidden="true">▮▮▮</span></div><img src="assets/icone.png" width="38" height="38" alt=""><strong>Olá, Ana.</strong><p>Seu transporte.<br>Seus próximos passos.</p><div class="phone-preview-card"><span>Outubro / 2026</span><strong>Frequência</strong><span class="badge in_review">Prazo: 31/10</span></div><a class="phone-preview-action" href="#experimente" data-start-role="estudante">Solicitar reembolso →</a><div class="phone-mini-nav" aria-hidden="true"><span>Início</span><span>Frequência</span><span>Perfil</span></div></div>
+        </div>
+      </div>
+      <div class="platform-band" id="plataformas"><div class="wrap platforms">
+        <article><span class="platform-symbol" aria-hidden="true">01</span><div><h2>Prefeitura</h2><p>Organiza alunos, documentos, prazos e decisões do benefício municipal.</p><a href="#experimente" data-start-role="prefeitura">Explorar o painel <span aria-hidden="true">→</span></a></div></article>
+        <article><span class="platform-symbol orange" aria-hidden="true">02</span><div><h2>Gestão</h2><p>Aprova prefeituras e acompanha licenças, acesso e operação da plataforma.</p><a href="#experimente" data-start-role="gestao">Explorar a gestão <span aria-hidden="true">→</span></a></div></article>
+        <article><span class="platform-symbol" aria-hidden="true">03</span><div><h2>Estudante</h2><p>Recebe comunicados e envia frequência, reembolso e matrícula pelo celular.</p><a href="#experimente" data-start-role="estudante">Explorar o aplicativo <span aria-hidden="true">→</span></a></div></article>
+      </div></div>
+    </section>
+
+    <section class="section experience" id="experimente" data-chapter="1" aria-labelledby="experience-title">
+      <div class="wrap"><div class="section-heading centered"><h2 id="experience-title">Experimente a jornada completa.</h2><p>Envie pelo estudante. Confira na prefeitura. Veja a decisão voltar ao aplicativo.</p></div>
+        <div class="experience-controls"><div class="segmented" role="group" aria-label="Plataforma da demonstração"><button type="button" data-role="prefeitura" aria-pressed="true">Prefeitura</button><button type="button" data-role="gestao" aria-pressed="false">Gestão</button><button type="button" data-role="estudante" aria-pressed="false">Estudante</button></div><div class="demo-utility"><span class="demo-label">Dados fictícios</span><button class="text-button" type="button" data-action="reset">↻ Reiniciar</button></div></div>
+        <div class="demo-workspace" id="demo-workspace"><p class="empty">Carregando a demonstração…</p></div>
+        <noscript><p class="notice">Ative JavaScript para usar as simulações. A apresentação, a segurança e os links abaixo continuam disponíveis.</p></noscript>
+        <p class="small demo-boundary">Prévia reproduzida para esta apresentação. Use informações fictícias: formulários, documentos e decisões são simulados no navegador. Recarregar ou reiniciar apaga os exemplos criados.</p>
+      </div>
+    </section>
+
+    <section class="section" id="telas" data-chapter="2" aria-labelledby="screens-title"><div class="wrap">
+      <div class="section-heading"><h2 id="screens-title">Cada tela tem um papel.</h2><p>Do cadastro da prefeitura ao acompanhamento do estudante, explore o que cada plataforma oferece.</p></div>
+      <div id="screen-catalog"><p>Prefeitura: dashboard, envios, documentos, alunos, fornecedores, períodos, notificações, relatórios, usuários, configurações e licença.</p><p>Gestão: prefeituras, primeiro acesso, licenças e operação.</p><p>Estudante: ativação, login, MFA, comunicados, frequência, reembolso, perfil, renovação e segurança.</p></div>
+    </div></section>
+
+    <section class="section security" id="seguranca" data-chapter="3" aria-labelledby="security-title"><div class="wrap">
+      <div class="section-heading"><h2 id="security-title">Acesso certo. Dados separados.<br>Histórico preservado.</h2><p>Proteções do sistema integrado, aplicadas na autenticação, na API e no banco de dados.</p></div>
+      <div class="security-columns">
+        <article><h3>Identidade e dois fatores</h3><p>Conta individual, senha e autenticador TOTP. Códigos de primeiro acesso vinculados ao cadastro autorizado.</p></article>
+        <article><h3>Permissões por perfil</h3><p>Administrador, Validador, Relatórios e Consulta. A API verifica a autorização em cada operação.</p></article>
+        <article><h3>Isolamento municipal</h3><p>Identidade e município validados na API, com políticas RLS no PostgreSQL. Uma prefeitura não consulta os dados de outra.</p></article>
+        <article><h3>Histórico e documentos</h3><p>Decisões e alterações registradas. Documentos exigem acesso autorizado; segredos administrativos ficam no servidor.</p></article>
+      </div>
+      <div class="security-proof"><div><h3>Veja as permissões em ação.</h3><p>Na prévia, escolha o perfil <strong>Consulta</strong> ou troque de município. A interface limita as ações e muda os registros exibidos.</p></div><a class="button light" href="#experimente" data-start-role="prefeitura">Experimentar permissões →</a></div>
+      <details class="architecture"><summary>Como as camadas se conectam</summary><div class="architecture-flow"><span>Flutter<br><small>Web e mobile</small></span><span aria-hidden="true">→</span><span>Supabase Auth<br><small>Identidade e MFA</small></span><span aria-hidden="true">→</span><span>API própria<br><small>Regras e autorização</small></span><span aria-hidden="true">→</span><span>PostgreSQL<br><small>Dados municipais</small></span></div><p>O aplicativo envia a sessão à API por HTTPS. O banco usa acesso restrito e isolamento por prefeitura. A biometria é opcional no aparelho e depende de uma sessão válida; ela não substitui o segundo fator no primeiro acesso.</p></details>
+      <p class="small security-note">Esta prévia simula as permissões; a proteção dos dados reais é responsabilidade das camadas do sistema integrado. A apresentação não autentica usuários nem comprova conformidade ou certificações.</p>
+    </div></section>
+
+    <section class="section availability" id="disponibilidade" data-chapter="4" aria-labelledby="availability-title"><div class="wrap">
+      <div class="section-heading"><h2 id="availability-title">Disponibilidade com transparência.</h2><p>Conheça o que pode ser demonstrado e as etapas que ainda precisam de validação.</p></div>
+      <div class="table-scroll"><table class="availability-table"><caption class="sr-only">Plataformas e disponibilidade</caption><thead><tr><th scope="col">Plataforma</th><th scope="col">Situação</th><th scope="col">Acesso</th></tr></thead><tbody>
+        <tr><th scope="row">Web · prefeitura e gestão</th><td><span class="badge in_review">Homologação integrada</span></td><td>Painel publicado; conta e vínculo autorizados.</td></tr>
+        <tr><th scope="row">Android · estudante</th><td><span class="badge in_review">APK de homologação</span></td><td>Instalação manual; acesso fornecido pela secretaria.</td></tr>
+        <tr><th scope="row">iOS · estudante</th><td><span class="badge pending">Base Flutter</span></td><td>Validação em iPhone e publicação na loja pendentes.</td></tr>
+      </tbody></table></div>
+      <div class="notice"><strong>Próximas etapas</strong><p>WhatsApp central e publicação nas lojas dependem de configuração e homologação. Push, mapas e rastreamento não são recursos disponíveis. A aprovação registra a decisão administrativa; não executa transferência bancária.</p><p>O ambiente integrado usa hospedagem gratuita e pode demorar a responder após inatividade. A prévia desta página funciona sem consultar esses serviços.</p></div>
+      <div class="actions"><a class="button primary" href="../painel/">Abrir painel integrado →</a><a class="button secondary" href="../demonstracao/">Explorar demo Flutter do estudante →</a><a class="text-button" href="https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/latest" target="_blank" rel="noopener noreferrer">Ver APK Android ↗</a></div>
+      <div class="faq"><details><summary>Esta apresentação altera os dados da prefeitura?</summary><p>Não. Os exemplos são fictícios e ficam em memória nesta página. Reiniciar ou recarregar restaura os dados iniciais. Não há envio à API, cadastro de contas ou documentos reais.</p></details><details><summary>Como funciona a licença municipal?</summary><p>O gestor confirma o pagamento recebido fora do sistema. O responsável ativa um código exclusivo e os 12 meses começam na ativação. Vencimento da licença municipal e renovação acadêmica do estudante são regras diferentes.</p></details><details><summary>O que deve ser validado antes de usar em operação?</summary><p>Cadastros e documentos autorizados, acesso e permissões, homologação das integrações, backup e restauração, aparelhos Android/iOS e condições de implantação. A publicação dos artefatos não substitui essa homologação.</p></details></div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><a class="brand" href="#conteudo"><img src="assets/icone.png" width="40" height="40" alt=""><span>Educa<span>Mov</span></span></a><p>Apresentação com dados fictícios · Revisada em 12/10/2026<br><a href="https://github.com/LucasAlbertinazzi/EducaMove-demo/tree/main/apresentacao" target="_blank" rel="noopener noreferrer">Disponível no GitHub ↗</a></p></div></footer>
+  <div class="presentation-bar" id="presentation-bar" hidden><button class="button secondary" type="button" data-action="previous-chapter" aria-label="Seção anterior">←</button><span id="chapter-label" aria-live="polite"></span><button class="button primary" type="button" data-action="next-chapter" aria-label="Próxima seção">→</button><button class="text-button" type="button" data-action="exit-presentation">Sair <small>Esc</small></button></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

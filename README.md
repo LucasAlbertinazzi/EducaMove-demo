@@ -1,5 +1,7 @@
 # EducaMov — ambiente integrado de homologação
 
+- Apresentação interativa: https://educamov.com.br/apresentacao/
+
 - Painel web: https://educamov.com.br/painel/
 - API: https://api.educamov.com.br/health/ready
 - APK Android 1.0.10: https://github.com/LucasAlbertinazzi/EducaMove-demo/releases/download/v1.0.10-mobile.11/EducaMov.apk
@@ -12,4 +14,5 @@ O painel atualizado permite copiar e enviar o código de licença ao contato cad
 
 O APK Android 1.0.10 usa a API HTTPS e autenticação reais, com acesso fornecido pela Secretaria de Educação. As novas prefeituras ativam uma licença de 12 meses após a confirmação manual do pagamento pelo gestor. O painel oferece anexos de comprovantes, status do serviço e confiança de dispositivo por 30 dias após MFA. Instalação manual com assinatura interna de homologação. As releases antigas continuam identificadas como demonstrações locais. A distribuição nas lojas Android/iOS e a integração WhatsApp ainda dependem das respectivas configurações externas.
 
-Ambiente gratuito de homologação: a API pode pausar por inatividade. Nenhuma credencial é pré-preenchida ou publicada. Este repositório contém apenas artefatos compilados; o código-fonte permanece privado.
+Ambiente gratuito de homologação: a API pode pausar por inatividade. Nenhuma credencial é pré-preenchida ou publicada. Este repositório contém artefatos de distribuição e a apresentação interativa pública; o código-fonte Flutter/API permanece privado.
+
