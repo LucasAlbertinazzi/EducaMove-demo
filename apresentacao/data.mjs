@@ -1,4 +1,4 @@
-export const statuses = { in_review: 'Em análise', pending: 'Correção solicitada', approved: 'Aprovado', rejected: 'Recusado' };
+export const statuses = { in_review: 'Em análise', pending: 'Correção solicitada', approved: 'Aprovado', reimbursed: 'Reembolsado', rejected: 'Recusado' };
 export const licenseLabels = { active: 'Licença ativa', awaiting: 'Aguardando licença', issued: 'Código emitido' };
 export const roleLabels = { administrator: 'Administrador', validator: 'Validador', reports: 'Relatórios', viewer: 'Consulta' };
 export const municipalityLabels = { brotas: 'Brotas', 'sao-carlos': 'São Carlos', ribeirao: 'Ribeirão Bonito' };
@@ -39,7 +39,9 @@ export function initialState() {
       { name: 'Carla Mendes', institution: 'Instituto de exemplo', course: 'Direito', municipality: 'sao-carlos', enabled: true },
     ],
     companies: [{ name: 'Transporte Universitário de Exemplo', municipality: 'brotas', enabled: true }, { name: 'Viação Demonstrativa', municipality: 'brotas', enabled: true }, { name: 'Transporte São Carlos de Exemplo', municipality: 'sao-carlos', enabled: true }],
-    notices: [{ title: 'Outubro: envie seus documentos', message: 'Frequência e comprovante do transporte devem ser enviados até 31/10.', municipality: 'brotas' }],
+    notices: [{ id: 'notice-1', title: 'Outubro: envie seus documentos', message: 'Frequência e comprovante do transporte devem ser enviados até 31/10.', municipality: 'brotas', status: 'published', read: false, version: 1, push: true, email: false, schedule: '' }],
+    nextNoticeId: 2,
+    pushPreferences: { brotas: false, 'sao-carlos': false, ribeirao: false },
     renewal: 'not_sent', biometricDemo: false,
   };
 }

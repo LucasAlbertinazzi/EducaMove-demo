@@ -1,16 +1,17 @@
-import { initialState } from './data.mjs';
-import { activateLicense, approveMunicipality, calculateReimbursement, decideRequest, filterRequests, issueLicense, money, parseMoney, reportCsv, submitRequest } from './domain.mjs';
-import { catalog, renderCatalog } from './catalog.mjs';
-import { renderPrefeitura, requestResults } from './prefeitura.mjs';
-import { renderGestao } from './gestao.mjs';
-import { renderEstudante } from './estudante.mjs';
+import { initialState } from './data.mjs?v=20261013-1';
+import { activateLicense, approveMunicipality, calculateReimbursement, changeNotice, decideRequest, filterRequests, issueLicense, money, parseMoney, registerSettlement, replaceStudentDocument, reportCsv, saveNotice, submitRequest } from './domain.mjs?v=20261013-1';
+import { catalog, renderCatalog } from './catalog.mjs?v=20261013-1';
+import { renderPrefeitura, requestResults } from './prefeitura.mjs?v=20261013-1';
+import { renderGestao } from './gestao.mjs?v=20261013-1';
+import { renderEstudante } from './estudante.mjs?v=20261013-1';
+import { initializeTheme } from './theme.mjs?v=20261013-1';
 
 let state = initialState();
-const ui = { role: 'prefeitura', view: 'dashboard', adminRole: 'administrator', search: '', status: '', month: '2026-10', selectedRequest: null, managementCity: 'ribeirao', managementView: 'municipalities', studentTab: 'home', catalogRole: 'prefeitura', catalogIndex: 0, chapter: null };
+const ui = { role: 'prefeitura', view: 'dashboard', adminRole: 'administrator', search: '', status: '', month: '2026-10', selectedRequest: null, managementCity: 'ribeirao', managementView: 'municipalities', studentTab: 'home', attendanceFilter: 'all', editNotice: null, catalogRole: 'prefeitura', catalogIndex: 0, chapter: null };
 const workspace = document.getElementById('demo-workspace');
 const catalogRoot = document.getElementById('screen-catalog');
 const chapters = [...document.querySelectorAll('[data-chapter]')];
-const chapterNames = ['Plataformas', 'Experimente', 'Telas e funções', 'Segurança', 'Disponibilidade'];
+const chapterNames = ['Plataformas', 'Atualizações entregues', 'Experimente', 'Telas e funções', 'Segurança', 'Disponibilidade'];
 let toastTimer;
 
 function toast(message) {
@@ -38,8 +39,14 @@ function replaceCity(city) { state.municipalities = state.municipalities.map(ite
 function requestInMunicipality(id) { return state.requests.find(item => item.id === id && item.municipality === state.municipality); }
 function requireAdmin() { if (ui.adminRole !== 'administrator') throw new Error('Esta alteração depende do perfil Administrador.'); }
 
+function confirmFrequency() {
+  const box = document.createElement('dialog'); box.className = 'sample-dialog';
+  box.innerHTML = '<h3>Confirmar frequência de exemplo</h3><p>Arquivo: frequencia_outubro_demo.pdf<br>Competência: outubro de 2026.</p><p>O app integrado permite conferir o PDF antes de enviar. Aqui o documento é fictício e nenhum arquivo é selecionado no aparelho.</p><div class="actions"><button type="button" class="button secondary" data-action="close-document-dialog">Cancelar</button><button type="button" class="button primary" data-action="send-attendance">Confirmar envio de exemplo</button></div>';
+  box.addEventListener('close', () => box.remove()); document.body.append(box); box.showModal();
+}
+
 function navigateExperience() {
-  if (ui.chapter !== null) showChapter(1);
+  if (ui.chapter !== null) showChapter(2);
   document.getElementById('experimente').scrollIntoView({ block: 'start', behavior: 'smooth' });
 }
 
@@ -83,7 +90,7 @@ function downloadCsv() {
 const actions = {
   reset() {
     state = initialState();
-    Object.assign(ui, { role: 'prefeitura', view: 'dashboard', adminRole: 'administrator', search: '', status: '', month: '2026-10', selectedRequest: null, managementCity: 'ribeirao', managementView: 'municipalities', studentTab: 'home' });
+    Object.assign(ui, { role: 'prefeitura', view: 'dashboard', adminRole: 'administrator', search: '', status: '', month: '2026-10', selectedRequest: null, managementCity: 'ribeirao', managementView: 'municipalities', studentTab: 'home', attendanceFilter: 'all', editNotice: null });
     render(true); toast('Demonstração reiniciada. Os exemplos criados foram apagados.');
   },
   'view-requests'() { ui.view = 'requests'; render(true); },
@@ -96,7 +103,22 @@ const actions = {
   'open-renewal'() { setStudent('renewal'); },
   'open-student-security'() { setStudent('security'); },
   'open-access'() { setStudent('access'); },
-  'send-attendance'() { state.attendances[state.municipality] = true; render(true); toast('Frequência fictícia recebida. Agora solicite o reembolso.'); },
+  'confirm-attendance': confirmFrequency,
+  'close-document-dialog'(target) { target.closest('dialog')?.close(); },
+  'send-attendance'(target) {
+    target.closest('dialog')?.close();
+    if (!state.periods[state.municipality].open) throw new Error('O recebimento desta competência está encerrado.');
+    const request = state.requests.find(item => item.studentId === 'demo-student' && item.municipality === state.municipality);
+    if (request && ['in_review', 'pending'].includes(request.status)) state = replaceStudentDocument(state, 'frequency');
+    state.attendances[state.municipality] = true; render(true); toast('Frequência fictícia recebida. Agora acompanhe o reembolso.');
+  },
+  'replace-student-document'(target) { state = replaceStudentDocument(state, target.dataset.kind); render(true); toast('Documento de exemplo substituído e devolvido à análise.'); },
+  'attendance-filter'(target) { ui.attendanceFilter = target.dataset.filter; render(); },
+  'toggle-push'() { state.pushPreferences[state.municipality] = !state.pushPreferences[state.municipality]; render(); toast('Preferência demonstrativa atualizada. Nenhuma permissão do navegador foi solicitada.'); },
+  'read-notice'(target) { state = changeNotice(state, target.dataset.id, 'read'); render(); toast('Comunicado marcado como lido na prévia.'); },
+  'edit-notice'(target) { requireAdmin(); ui.editNotice = target.dataset.id; render(); workspace.querySelector('input[name="title"]')?.focus(); },
+  'cancel-notice'(target) { state = changeNotice(state, target.dataset.id, 'cancel', ui.adminRole); if (ui.editNotice === target.dataset.id) ui.editNotice = null; render(); toast('Agendamento fictício cancelado.'); },
+  'publish-notice'(target) { state = changeNotice(state, target.dataset.id, 'publish', ui.adminRole); ui.editNotice = null; render(); toast('Comunicado publicado na prévia do estudante.'); },
   'send-renewal'() { state.renewal = 'in_review'; render(true); toast('Matrícula fictícia enviada para análise.'); },
   'toggle-biometric'() { state.biometricDemo = !state.biometricDemo; render(); toast('Preferência visual atualizada. Nenhuma biometria foi usada.'); },
   'toggle-period'() { requireAdmin(); state.periods[state.municipality].open = !state.periods[state.municipality].open; render(true); toast('Recebimento atualizado somente na prévia deste município.'); },
@@ -106,13 +128,13 @@ const actions = {
   'select-city'(target) { if (selectedCity(target.dataset.city)) { ui.managementCity = target.dataset.city; render(); } },
   'open-city-panel'(target) { if (selectedCity(target.dataset.city)) { state.municipality = target.dataset.city; ui.view = 'dashboard'; ui.selectedRequest = null; setRole('prefeitura'); } },
   'sample-document'(target) {
-    const item = requestInMunicipality(ui.selectedRequest);
+    const item = target.dataset.studentDocument ? state.requests.find(item => item.studentId === 'demo-student' && item.municipality === state.municipality) ?? (target.dataset.kind === 'frequency' && state.attendances[state.municipality] ? { name: state.studentName, amountCents: 0 } : null) : requestInMunicipality(ui.selectedRequest);
     if (!item) return;
     const box = document.createElement('dialog');
     box.className = 'sample-dialog';
-    const heading = document.createElement('h3'); heading.textContent = target.dataset.kind === 'frequency' ? 'Frequência de exemplo' : 'Comprovante de exemplo';
-    const text = document.createElement('p'); text.textContent = `Documento fictício de ${item.name}. Competência: outubro de 2026. Valor do transporte: ${money(item.amountCents)}. Não possui validade documental.`;
-    const close = document.createElement('button'); close.className = 'button primary'; close.textContent = 'Voltar à análise'; close.type = 'button'; close.addEventListener('click', () => box.close());
+    const heading = document.createElement('h3'); heading.textContent = target.dataset.kind === 'settlement' ? 'Comprovante do reembolso de exemplo' : target.dataset.kind === 'frequency' ? 'Frequência de exemplo' : 'Comprovante de exemplo';
+    const text = document.createElement('p'); text.textContent = target.dataset.kind === 'settlement' && item.settlement ? `Pagamento fictício: ${money(item.settlement.amountCents)} em ${item.settlement.paidOn}. Referência: ${item.settlement.reference}. Não possui validade documental.` : target.dataset.kind === 'frequency' ? `Frequência fictícia de ${item.name}, na Instituição de exemplo. Competência: outubro de 2026. Não possui validade documental.` : `Documento fictício de ${item.name}. Competência: outubro de 2026. Valor do transporte: ${money(item.amountCents)}. Não possui validade documental.`;
+    const close = document.createElement('button'); close.className = 'button primary'; close.textContent = 'Voltar à prévia'; close.type = 'button'; close.addEventListener('click', () => box.close());
     box.append(heading, text, close); box.addEventListener('close', () => { box.remove(); workspace.querySelector(`[data-kind="${target.dataset.kind}"]`)?.focus(); }); document.body.append(box); box.showModal();
   },
   export: downloadCsv,
@@ -127,7 +149,13 @@ document.addEventListener('click', event => {
   try {
     if (target.id === 'presentation-toggle') { ui.chapter === null ? showChapter(0) : exitPresentation(); return; }
     if (target.dataset.role) { setRole(target.dataset.role); return; }
-    if (target.dataset.startRole) setRole(target.dataset.startRole);
+    if (target.dataset.startRole) {
+      if (target.dataset.startTab) ui.studentTab = target.dataset.startTab;
+      if (target.dataset.startView) { ui.view = target.dataset.startView; ui.selectedRequest = null; }
+      setRole(target.dataset.startRole);
+      if (ui.chapter !== null) { event.preventDefault(); navigateExperience(); }
+      return;
+    }
     if (target.dataset.view) { ui.view = target.dataset.view; ui.selectedRequest = null; render(true); return; }
     if (target.dataset.request && requestInMunicipality(target.dataset.request)) { ui.selectedRequest = target.dataset.request; ui.view = 'review'; render(true); return; }
     if (target.dataset.managementView) { ui.managementView = target.dataset.managementView; render(true); return; }
@@ -179,7 +207,7 @@ document.addEventListener('submit', event => {
   const form = event.target;
   const values = new FormData(form);
   const value = name => String(values.get(name) ?? '');
-  const slots = { 'decision-form': 'decision-error', 'reimbursement-form': 'reimbursement-error', 'municipality-approval-form': 'municipality-error', 'license-issue-form': 'license-error', 'license-activate-form': 'activate-error', 'policy-form': 'policy-error', 'notice-form': 'notice-error', 'student-registry-form': 'registry-error', 'mfa-demo-form': 'mfa-error' };
+  const slots = { 'decision-form': 'decision-error', 'settlement-form': 'settlement-error', 'reimbursement-form': 'reimbursement-error', 'municipality-approval-form': 'municipality-error', 'license-issue-form': 'license-error', 'license-activate-form': 'activate-error', 'policy-form': 'policy-error', 'notice-form': 'notice-error', 'student-registry-form': 'registry-error', 'mfa-demo-form': 'mfa-error' };
   try {
     if (form.id === 'reimbursement-form') {
       state = submitRequest(state, { name: value('name'), amount: value('amount'), paymentDate: value('paymentDate'), paymentDocument: values.has('paymentDocument') });
@@ -191,6 +219,11 @@ document.addEventListener('submit', event => {
       const updated = decideRequest(item, { status, notes: value('notes'), amountCents: status === 'approved' ? parseMoney(value('amount')) : 0, frequencyValid: values.has('frequencyValid'), paymentValid: values.has('paymentValid'), role: ui.adminRole });
       state.requests = state.requests.map(item => item.id === updated.id ? updated : item);
       render(true); toast('Decisão registrada na prévia. O estudante já pode consultar a mensagem.');
+    } else if (form.id === 'settlement-form') {
+      const item = requestInMunicipality(form.dataset.id);
+      if (!item) throw new Error('Solicitação indisponível neste município.');
+      const updated = registerSettlement(item, { paidOn: value('paidOn'), reference: value('reference'), receipt: values.has('receipt'), role: ui.adminRole });
+      state.requests = state.requests.map(item => item.id === updated.id ? updated : item); render(true); toast('Pagamento fictício registrado. Nenhuma transferência foi executada.');
     } else if (form.id === 'municipality-approval-form') {
       replaceCity(approveMunicipality(selectedCity(form.dataset.city), value('reason'))); render(true); toast('Cadastro fictício aprovado. Agora emita o código da licença.');
     } else if (form.id === 'license-issue-form') {
@@ -202,9 +235,8 @@ document.addEventListener('submit', event => {
       if (!value('percentage') || !Number.isInteger(percentage) || percentage < 0 || percentage > 100) throw new Error('Use um percentual inteiro entre 0 e 100.');
       state.percentages[state.municipality] = percentage; render(true); toast('Percentual demonstrativo atualizado para este município.');
     } else if (form.id === 'notice-form') {
-      requireAdmin(); const title = value('title').trim(); const message = value('message').trim();
-      if (title.length < 3 || title.length > 80 || message.length < 5 || message.length > 300) throw new Error('Confira o título e a mensagem do comunicado fictício.');
-      state.notices.unshift({ title, message, municipality: state.municipality }); render(true); toast('Comunicado fictício publicado no início do estudante.');
+      state = saveNotice(state, { id: form.dataset.id || null, version: Number(form.dataset.version), title: value('title'), message: value('message'), schedule: value('schedule'), push: values.has('push'), email: values.has('email') }, ui.adminRole);
+      ui.editNotice = null; render(true); toast(value('schedule') ? 'Agendamento fictício salvo. Publique agora ou cancele para experimentar.' : 'Comunicado fictício publicado no início do estudante.');
     } else if (form.id === 'student-registry-form') {
       requireAdmin(); const name = value('name').trim(); const course = value('course').trim();
       if (name.length < 2 || name.length > 80 || course.length < 2 || course.length > 80) throw new Error('Use um nome e curso fictícios de 2 a 80 caracteres.');
@@ -227,4 +259,4 @@ document.addEventListener('keydown', event => {
   if (event.key === 'ArrowLeft') { event.preventDefault(); showChapter(ui.chapter - 1); }
 });
 
-render(); renderScreens();
+initializeTheme(); render(); renderScreens();

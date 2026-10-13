@@ -1,5 +1,5 @@
-import { licenseLabels } from './data.mjs';
-import { button, e, errorSlot, icon, title } from './ui.mjs';
+import { licenseLabels } from './data.mjs?v=20261013-1';
+import { button, e, errorSlot, icon, title } from './ui.mjs?v=20261013-1';
 
 function municipalityList(state, ui) {
   return `<div class="panel">${state.municipalities.map(city => `<div class="city-row ${city.id === ui.managementCity ? 'active' : ''}"><div><h4>${e(city.name)} · ${city.state}</h4><p>${e(city.contact)}</p><div class="city-status"><span class="badge ${city.status === 'approved' ? 'approved' : 'pending'}">${city.status === 'approved' ? 'Cadastro aprovado' : 'Cadastro pendente'}</span><span class="badge ${city.license === 'active' ? 'approved' : 'in_review'}">${licenseLabels[city.license]}</span></div></div>${button('Abrir cadastro', 'select-city', `data-city="${city.id}"`)}</div>`).join('')}</div>`;

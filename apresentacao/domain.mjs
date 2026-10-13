@@ -34,7 +34,7 @@ export function summary(requests) {
     total: result.total + 1,
     reviewing: result.reviewing + Number(item.status === 'in_review'),
     pending: result.pending + Number(item.status === 'pending'),
-    approved: result.approved + (item.status === 'approved' ? item.approvedCents : 0),
+    approved: result.approved + (['approved', 'reimbursed'].includes(item.status) ? item.approvedCents : 0),
     requested: result.requested + item.amountCents,
   }), { total: 0, reviewing: 0, pending: 0, approved: 0, requested: 0 });
 }
@@ -113,4 +113,54 @@ export function reportCsv(items) {
     ...items.map(item => [item.protocol, item.name, item.month, item.status,
       (item.amountCents / 100).toFixed(2).replace('.', ','), (item.approvedCents / 100).toFixed(2).replace('.', ',')])];
   return '\ufeff' + rows.map(row => row.map(csvCell).join(';')).join('\r\n');
+}
+
+export function replaceStudentDocument(state, kind) {
+  if (!['frequency', 'payment'].includes(kind)) throw new Error('Documento de exemplo inválido.');
+  if (!state.periods[state.municipality].open) throw new Error('O prazo de correção está encerrado.');
+  const request = state.requests.find(item => item.studentId === 'demo-student' && item.municipality === state.municipality);
+  if (!request || !['in_review', 'pending'].includes(request.status)) throw new Error('A solicitação não permite substituir documentos.');
+  const updated = { ...request, status: 'in_review', [kind === 'frequency' ? 'frequencyValid' : 'paymentValid']: false,
+    note: 'Documento de exemplo substituído. A secretaria fará uma nova análise.',
+    history: [...request.history, `${kind === 'frequency' ? 'Frequência' : 'Comprovante'} de exemplo reenviado.`] };
+  return { ...state, requests: state.requests.map(item => item.id === updated.id ? updated : item),
+    attendances: kind === 'frequency' ? { ...state.attendances, [state.municipality]: true } : state.attendances };
+}
+
+export function registerSettlement(item, { paidOn, reference, receipt, role = 'administrator' }) {
+  if (role !== 'administrator') throw new Error('Registrar pagamento exige o perfil Administrador nesta prévia.');
+  if (item.status !== 'approved' || item.approvedCents <= 0) throw new Error('A solicitação precisa estar aprovada e ainda não paga.');
+  if (!/^2026-10-(0[1-9]|1[0-3])$/.test(paidOn)) throw new Error('Use uma data até 13/10/2026, o dia de exemplo desta prévia.');
+  if (reference.trim().length < 3 || reference.length > 100 || !receipt) throw new Error('Informe a referência e selecione o comprovante de pagamento fictício.');
+  return { ...item, status: 'reimbursed', settlement: { paidOn, reference: reference.trim(), amountCents: item.approvedCents },
+    history: [...item.history, 'Pagamento já efetuado registrado na prévia, com comprovante fictício.'] };
+}
+
+export function saveNotice(state, { id, version, title, message, schedule = '', push = false, email = false }, role = 'administrator') {
+  if (role !== 'administrator') throw new Error('Comunicados exigem o perfil Administrador.');
+  if (title.trim().length < 3 || title.length > 80 || message.trim().length < 5 || message.length > 300) throw new Error('Confira o título e a mensagem do comunicado fictício.');
+  if (schedule && (!/^2026-\d{2}-\d{2}T\d{2}:\d{2}$/.test(schedule) || !Number.isFinite(Date.parse(`${schedule}Z`)) || new Date(`${schedule}Z`).toISOString().slice(0, 16) !== schedule || schedule <= '2026-10-13T10:00')) {
+    throw new Error('Escolha uma data após 13/10/2026 às 10h, o relógio fictício desta prévia.');
+  }
+  const previous = id ? state.notices.find(item => item.id === id && item.municipality === state.municipality) : null;
+  if (id && (!previous || previous.status !== 'scheduled' || previous.version !== version)) throw new Error('Este agendamento não pode ser editado. Atualize a prévia.');
+  const notice = { id: previous?.id ?? `notice-${state.nextNoticeId}`, municipality: state.municipality,
+    title: title.trim(), message: message.trim(), schedule, push, email, read: false,
+    status: schedule ? 'scheduled' : 'published', version: (previous?.version ?? 0) + 1 };
+  return { ...state, nextNoticeId: state.nextNoticeId + Number(!previous),
+    notices: previous ? state.notices.map(item => item.id === previous.id ? notice : item) : [notice, ...state.notices] };
+}
+
+export function changeNotice(state, id, action, role = 'administrator') {
+  const notice = state.notices.find(item => item.id === id && item.municipality === state.municipality);
+  if (!notice) throw new Error('Comunicado indisponível neste município.');
+  if (action === 'read') {
+    if (notice.status !== 'published') throw new Error('Este comunicado não foi publicado.');
+  } else if (role !== 'administrator' || notice.status !== 'scheduled' || !['publish', 'cancel'].includes(action)) {
+    throw new Error('Esta ação não é permitida para o agendamento.');
+  }
+  const updated = { ...notice, read: action === 'read' ? true : notice.read,
+    status: action === 'publish' ? 'published' : action === 'cancel' ? 'cancelled' : notice.status,
+    version: notice.version + Number(action !== 'read') };
+  return { ...state, notices: state.notices.map(item => item.id === id ? updated : item) };
 }
