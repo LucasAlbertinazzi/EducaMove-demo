@@ -50,7 +50,7 @@ async function startViewer() {
     } catch (error) {
       if (operation !== revision || error.name === 'RenderingCancelledException') return;
       status.hidden = false;
-      status.textContent = 'Não foi possível exibir o PDF. Baixe o documento para consultá-lo.';
+      status.textContent = 'Não foi possível exibir a cópia de leitura. Atualize a tela e tente novamente.';
     }
   }
 
@@ -70,7 +70,7 @@ async function startViewer() {
     await render();
     addEventListener('pagehide',()=>void pdf.destroy(),{once:true});
   } catch (_) {
-    status.textContent='Não foi possível abrir este PDF. Baixe o documento e tente novamente.';
+    status.textContent='Não foi possível abrir a cópia de leitura. Atualize a tela e tente novamente.';
   }
 }
 
