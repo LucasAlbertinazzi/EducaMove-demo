@@ -1,8 +1,8 @@
-import { initialState } from './data.mjs?v=20261014-2';
-import { activateLicense, approveMunicipality, calculateReimbursement, changeNotice, decideRequest, filterRequests, issueLicense, money, parseMoney, registerSettlement, replaceStudentDocument, reportCsv, saveNotice, submitRequest } from './domain.mjs?v=20261014-2';
-import { catalog, renderCatalog } from './catalog.mjs?v=20261014-2';
-import { renderPrefeitura, requestResults } from './prefeitura.mjs?v=20261014-2';
-import { renderGestao } from './gestao.mjs?v=20261014-2';
+import { initialState } from './data.mjs?v=20261014-3';
+import { activateLicense, approveMunicipality, calculateReimbursement, changeNotice, decideRequest, filterRequests, issueLicense, money, parseMoney, registerSettlement, replaceStudentDocument, reportCsv, saveNotice, submitRequest } from './domain.mjs?v=20261014-3';
+import { catalog, renderCatalog } from './catalog.mjs?v=20261014-3';
+import { renderPrefeitura, requestResults } from './prefeitura.mjs?v=20261014-3';
+import { renderGestao } from './gestao.mjs?v=20261014-3';
 import { renderEstudante } from './estudante.mjs?v=20261013-1';
 import { initializeTheme } from './theme.mjs?v=20261013-1';
 
@@ -227,7 +227,7 @@ document.addEventListener('submit', event => {
     } else if (form.id === 'municipality-approval-form') {
       replaceCity(approveMunicipality(selectedCity(form.dataset.city), value('reason'))); render(true); toast('Cadastro fictício aprovado. Agora emita o código da licença.');
     } else if (form.id === 'license-issue-form') {
-      replaceCity(issueLicense(selectedCity(form.dataset.city), { paymentConfirmed: values.has('paymentConfirmed'), reference: value('reference') })); render(true); toast('Código fictício emitido. Os 12 meses começam na ativação.');
+      replaceCity(issueLicense(selectedCity(form.dataset.city), { contractConfirmed: values.has('contractConfirmed'), reference: value('reference') })); render(true); toast('Código fictício emitido. Os 12 meses começam na ativação.');
     } else if (form.id === 'license-activate-form') {
       replaceCity(activateLicense(selectedCity(form.dataset.city), value('code'))); render(true); toast('Licença fictícia ativada de 12/10/2026 a 12/10/2027.');
     } else if (form.id === 'policy-form') {

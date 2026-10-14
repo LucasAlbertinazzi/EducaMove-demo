@@ -87,11 +87,11 @@ export function approveMunicipality(city, reason) {
   return { ...city, status: 'approved', license: 'awaiting', reason: reason.trim() };
 }
 
-export function issueLicense(city, { paymentConfirmed, reference }) {
+export function issueLicense(city, { contractConfirmed, reference }) {
   if (city.status !== 'approved') throw new Error('Aprove o cadastro antes de emitir a licença.');
   if (city.license !== 'awaiting') throw new Error('Já existe uma licença ativa ou um código emitido.');
-  if (!paymentConfirmed || reference.trim().length < 3) throw new Error('Confirme o pagamento fictício e informe uma referência de exemplo.');
-  return { ...city, license: 'issued', code: `DEMO-${city.id.toUpperCase()}-2026`, paymentReference: reference.trim() };
+  if (!contractConfirmed || reference.trim().length < 3) throw new Error('Confirme o contrato fictício e informe uma referência de exemplo.');
+  return { ...city, license: 'issued', code: `DEMO-${city.id.toUpperCase()}-2026`, contractReference: reference.trim(), amountCents: 1600000, paid: false };
 }
 
 export function activateLicense(city, code, today = '2026-10-12') {

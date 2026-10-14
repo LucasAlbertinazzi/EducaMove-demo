@@ -1,5 +1,5 @@
-import { filterRequests, money, summary } from './domain.mjs?v=20261014-2';
-import { municipalityLabels, roleLabels, statuses } from './data.mjs?v=20261014-2';
+import { filterRequests, money, summary } from './domain.mjs?v=20261014-3';
+import { municipalityLabels, roleLabels, statuses } from './data.mjs?v=20261014-3';
 import { badge, button, e, empty, errorSlot, icon, title } from './ui.mjs?v=20261013-1';
 
 export const destinations = [
