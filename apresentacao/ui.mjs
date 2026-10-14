@@ -1,4 +1,4 @@
-import { statuses } from './data.mjs?v=20261013-1';
+import { statuses } from './data.mjs?v=20261014-2';
 
 export const e = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 

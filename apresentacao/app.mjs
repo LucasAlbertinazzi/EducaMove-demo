@@ -1,8 +1,8 @@
-import { initialState } from './data.mjs?v=20261013-1';
-import { activateLicense, approveMunicipality, calculateReimbursement, changeNotice, decideRequest, filterRequests, issueLicense, money, parseMoney, registerSettlement, replaceStudentDocument, reportCsv, saveNotice, submitRequest } from './domain.mjs?v=20261013-1';
-import { catalog, renderCatalog } from './catalog.mjs?v=20261013-1';
-import { renderPrefeitura, requestResults } from './prefeitura.mjs?v=20261013-1';
-import { renderGestao } from './gestao.mjs?v=20261013-1';
+import { initialState } from './data.mjs?v=20261014-2';
+import { activateLicense, approveMunicipality, calculateReimbursement, changeNotice, decideRequest, filterRequests, issueLicense, money, parseMoney, registerSettlement, replaceStudentDocument, reportCsv, saveNotice, submitRequest } from './domain.mjs?v=20261014-2';
+import { catalog, renderCatalog } from './catalog.mjs?v=20261014-2';
+import { renderPrefeitura, requestResults } from './prefeitura.mjs?v=20261014-2';
+import { renderGestao } from './gestao.mjs?v=20261014-2';
 import { renderEstudante } from './estudante.mjs?v=20261013-1';
 import { initializeTheme } from './theme.mjs?v=20261013-1';
 

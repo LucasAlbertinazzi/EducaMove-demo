@@ -29,6 +29,7 @@ export function initialState() {
       id: `seed-${index + 1}`, protocol: `DEMO-2026-${String(index + 1).padStart(4, '0')}`,
       studentId: `seed-student-${index + 1}`, name, municipality, amountCents, status, frequencyValid, paymentValid, approvedCents,
       institution: index % 2 ? 'Faculdade de exemplo' : 'Instituto de exemplo', month: '2026-10', paymentDate: '2026-10-05',
+      referencePercentage: 70, referenceCents: Math.floor((amountCents * 70 + 50) / 100),
       note: status === 'pending' ? 'Reenvie a frequência legível.' : status === 'approved' ? 'Documentos conferidos pela secretaria.' : 'Aguardando conferência da secretaria.',
       history: ['Solicitação demonstrativa recebida.'],
     })),

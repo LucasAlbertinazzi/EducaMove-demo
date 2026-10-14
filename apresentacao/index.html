@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Conheça o EducaMov 1.0.20: frequência, reembolso, notificações Android e pagamentos registrados. Apresentação interativa com temas claro e escuro e dados fictícios.">
+  <meta name="description" content="Conheça o EducaMov: plano Essencial com proteção de documentos e pacote opcional de Validação Avançada. Apresentação interativa com dados fictícios e conferência humana.">
   <meta name="theme-color" content="#1762e8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>EducaMov — apresentação interativa do sistema</title>
   <link rel="icon" href="assets/icone.png">
-  <link rel="stylesheet" href="styles.css?v=20261013-1">
-  <script type="module" src="app.mjs?v=20261013-1"></script>
+  <link rel="stylesheet" href="styles.css?v=20261014-1">
+  <script type="module" src="app.mjs?v=20261014-2"></script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <header class="site-header"><div class="wrap header-inner">
     <a class="brand" href="#conteudo" aria-label="EducaMov, início"><img src="assets/icone.png" width="48" height="48" alt=""><span>Educa<span>Mov</span></span></a>
-    <nav aria-label="Seções da apresentação"><a href="#plataformas">Plataformas</a><a href="#atualizacoes">Atualizações</a><a href="#experimente">Experimente</a><a href="#telas">Telas</a><a href="#seguranca">Segurança</a></nav>
+    <nav aria-label="Seções da apresentação"><a href="#plataformas">Plataformas</a><a href="#atualizacoes">Atualizações</a><a href="#experimente">Experimente</a><a href="#telas">Telas</a><a href="#seguranca">Segurança e planos</a></nav>
     <div class="header-controls"><div class="theme-buttons" role="group" aria-label="Tema da apresentação"><button type="button" data-theme-select="light" aria-pressed="true"><span aria-hidden="true">☀</span> Claro</button><button type="button" data-theme-select="dark" aria-pressed="false"><span aria-hidden="true">☾</span> Escuro</button></div><button class="button secondary presentation-toggle" type="button" id="presentation-toggle">Modo apresentação</button></div>
   </div></header>
   <main id="conteudo">
     <section class="cover" data-chapter="0" aria-labelledby="cover-title">
       <div class="wrap hero">
         <div class="hero-copy"><h1 id="cover-title">O transporte universitário,<br><span>conectado de ponta a ponta.</span></h1>
-          <p class="release-label">EducaMov 1.0.20 · Atualizações de 13/10/2026</p><p class="lead">Prefeitura, gestão e estudantes na mesma jornada. Frequência, reembolso e comunicados conectados, do envio ao pagamento registrado.</p>
+          <p class="release-label">EducaMov 1.0.23 · Apresentação revisada em 14/10/2026</p><p class="lead">Prefeitura, gestão e estudantes na mesma jornada. Frequência, reembolso e comunicados conectados, do envio ao pagamento registrado.</p>
           <div class="actions"><a class="button primary" href="#experimente">Experimentar o sistema <span aria-hidden="true">→</span></a><a class="button secondary" href="#plataformas">Conhecer as plataformas</a></div>
           <p class="small">Prévia interativa sem login. Os exemplos ficam apenas nesta página.</p>
         </div>
@@ -48,7 +48,7 @@
     </section>
 
     <section class="section updates" id="atualizacoes" data-chapter="1" aria-labelledby="updates-title"><div class="wrap">
-      <div class="section-heading"><p class="release-label">Novidades já entregues</p><h2 id="updates-title">Da frequência ao reembolso,<br>cada etapa acompanhada.</h2><p>As atualizações publicadas no painel, na API e no APK Android 1.0.20. Experimente os principais fluxos com os exemplos abaixo.</p></div>
+      <div class="section-heading"><p class="release-label">Novidades já entregues</p><h2 id="updates-title">Da frequência ao reembolso,<br>cada etapa acompanhada.</h2><p>As atualizações do painel, da API e do APK Android 1.0.23 incluem biometria ao reabrir e confirmação de envio de PDF. Experimente os principais fluxos com os exemplos abaixo.</p></div>
       <div class="update-grid">
         <article><span class="update-number">01</span><h3>Frequência completa</h3><p>PDF de até 5 MB, confirmação antes do envio, histórico por competência, filtros, correções e download do arquivo enviado.</p><a href="#experimente" data-start-role="estudante" data-start-tab="attendance">Explorar Frequência →</a></article>
         <article><span class="update-number">02</span><h3>Reembolso com os documentos</h3><p>Data do pagamento, valor em reais e comprovante antes de enviar. Solicitação e documento são registrados juntos; cancelar não cria um pedido incompleto.</p><a href="#experimente" data-start-role="estudante" data-start-tab="reimbursement">Explorar Reembolso →</a></article>
@@ -74,12 +74,48 @@
     </div></section>
 
     <section class="section security" id="seguranca" data-chapter="4" aria-labelledby="security-title"><div class="wrap">
-      <div class="section-heading"><h2 id="security-title">Acesso certo. Dados separados.<br>Histórico preservado.</h2><p>Proteções do sistema integrado, aplicadas na autenticação, na API e no banco de dados.</p></div>
+      <div class="section-heading"><h2 id="security-title">Segurança incluída.<br>Validação avançada opcional.</h2><p>O plano Essencial protege o acesso e os documentos. O pacote extra acrescenta automação para apoiar a conferência da secretaria.</p></div>
       <div class="security-columns">
         <article><h3>Identidade e dois fatores</h3><p>Conta individual, senha e autenticador TOTP. Códigos de primeiro acesso vinculados ao cadastro autorizado.</p></article>
         <article><h3>Permissões por perfil</h3><p>Administrador, Validador, Relatórios e Consulta. A API verifica a autorização em cada operação.</p></article>
         <article><h3>Isolamento municipal</h3><p>Identidade e município validados na API, com políticas RLS no PostgreSQL. Uma prefeitura não consulta os dados de outra.</p></article>
         <article><h3>Histórico e documentos</h3><p>Decisões e alterações registradas. Downloads limitados ao acesso autorizado; comprovantes de reembolso cifrados e credenciais de envio push guardadas no servidor.</p></article>
+      </div>
+      <div class="document-offer" id="planos-documentais" aria-labelledby="document-plans-title">
+        <h3 id="document-plans-title">Escolha o apoio à análise documental.</h3>
+        <p id="document-safety" class="document-offer-intro">Proteção básica em todos os planos: quarentena, antivírus e cópia segura para leitura, com bloqueio de leitura e download enquanto a inspeção não concluir. A contratação do pacote extra não altera essas proteções.</p>
+        <div class="document-plan-grid">
+          <article class="document-plan" id="plan-essential" aria-labelledby="essential-title">
+            <p class="document-plan-label">Incluído no plano principal</p>
+            <h4 id="essential-title">Essencial</h4>
+            <p>Organização dos envios com conferência manual da autenticidade pela secretaria.</p>
+            <ul>
+              <li>Conta individual, permissões por perfil e separação por prefeitura.</li>
+              <li>Documentos privados, limites de envio e acesso autorizado.</li>
+              <li>Quarentena, antivírus e visualização da cópia segura.</li>
+              <li>Conferência manual no canal oficial da instituição, quando disponível.</li>
+              <li>Decisão humana e histórico das análises.</li>
+            </ul>
+          </article>
+          <article class="document-plan" id="plan-advanced" aria-labelledby="advanced-title">
+            <p class="document-plan-label">Pacote extra opcional</p>
+            <h4 id="advanced-title">Validação Avançada de Documentos</h4>
+            <p>Tudo do Essencial, com automação para ajudar a priorizar e conferir os comprovantes.</p>
+            <ul>
+              <li>Leitura automática por OCR de nome, CPF e competência, quando legíveis.</li>
+              <li>Alertas de divergências e possível reutilização de documentos.</li>
+              <li>Validação institucional conforme integração homologada com cada emissor.</li>
+              <li>Relatório documental paginado, exportação CSV da página e repetição de até 25 falhas de inspeção, sem aprovação automática.</li>
+            </ul>
+          </article>
+        </div>
+        <p id="document-human-review" class="document-offer-note"><strong>Conferência humana obrigatória nos dois planos.</strong> Inspeção de segurança não comprova a autenticidade acadêmica. Alertas apoiam a análise; ausência de código ou de texto legível não prova fraude. Não há validação automática universal de faculdades.</p>
+        <details class="document-demo-scope" id="document-demo-scope">
+          <summary>Como demonstrar antes da contratação</summary>
+          <p>Segurança documental homologada localmente em 14/10/2026: 10 cenários com antivírus real, incluindo bloqueios e recuperação de falhas. A inspeção está implantada no sistema integrado e depende do computador de processamento ligado, conectado e com Docker ativo. Enquanto indisponível, novos arquivos permanecem em quarentena.</p>
+          <p>Esta apresentação usa dados fictícios e não executa antivírus, OCR ou validação institucional. A demonstração técnica real pode ser preparada no computador de homologação, com arquivos de teste.</p>
+          <p>Nenhum serviço é contratado por esta página. Preços e infraestrutura serão apresentados para aprovação na implantação, após a contratação municipal. O pacote extra não é ativado nem cobrado nesta prévia.</p>
+        </details>
       </div>
       <div class="security-proof"><div><h3>Veja as permissões em ação.</h3><p>Na prévia, escolha o perfil <strong>Consulta</strong> ou troque de município. A interface limita as ações e muda os registros exibidos.</p></div><a class="button light" href="#experimente" data-start-role="prefeitura">Experimentar permissões →</a></div>
       <details class="architecture"><summary>Como as camadas se conectam</summary><div class="architecture-flow"><span>Flutter<br><small>Web e mobile</small></span><span aria-hidden="true">→</span><span>Supabase Auth<br><small>Identidade e MFA</small></span><span aria-hidden="true">→</span><span>API própria<br><small>Regras e autorização</small></span><span aria-hidden="true">→</span><span>PostgreSQL<br><small>Dados municipais</small></span></div><p>O aplicativo envia a sessão à API por HTTPS. O banco usa acesso restrito e isolamento por prefeitura. A biometria é opcional no aparelho e depende de uma sessão válida; ela não substitui o segundo fator no primeiro acesso.</p></details>
@@ -90,8 +126,10 @@
       <div class="section-heading"><h2 id="availability-title">Disponibilidade com transparência.</h2><p>Conheça o que pode ser demonstrado e as etapas que ainda precisam de validação.</p></div>
       <div class="table-scroll"><table class="availability-table"><caption class="sr-only">Plataformas e disponibilidade</caption><thead><tr><th scope="col">Plataforma</th><th scope="col">Situação</th><th scope="col">Acesso</th></tr></thead><tbody>
         <tr><th scope="row">Web · prefeitura e gestão</th><td><span class="badge in_review">Homologação integrada</span></td><td>Painel publicado; conta e vínculo autorizados.</td></tr>
-        <tr><th scope="row">Android · estudante</th><td><span class="badge approved">APK 1.0.20 publicado</span></td><td>Instalação manual e atualização no Samsung SM-A146M; acesso fornecido pela secretaria.</td></tr>
+        <tr><th scope="row">Android · estudante</th><td><span class="badge approved">APK 1.0.23 integrado</span></td><td>Instalação e inicialização no Samsung SM-A146M; acesso fornecido pela secretaria. Homologação completa dos fluxos físicos ainda necessária.</td></tr>
         <tr><th scope="row">Push Android</th><td><span class="badge approved">Configurado e testado</span></td><td>Permissão no primeiro acesso; envio direcionado à conta do estudante.</td></tr>
+        <tr><th scope="row">Proteção documental · todos os planos</th><td><span class="badge approved">Inspeção implantada</span></td><td>Quarentena, antivírus e cópia segura; processamento depende do computador ligado e do Docker ativo.</td></tr>
+        <tr><th scope="row">Validação Avançada · pacote extra</th><td><span class="badge in_review">Ativação municipal</span></td><td>Controle por município, relatório paginado/CSV e repetição de falhas implantados. OCR e alertas homologados localmente. O adicional exige autorização do gestor; Integrações com faculdades exigem homologação própria.</td></tr>
         <tr><th scope="row">iOS · estudante</th><td><span class="badge pending">Widgets validados</span></td><td>Build macOS/Xcode, validação em iPhone e chave APNs para push ainda pendentes.</td></tr>
       </tbody></table></div>
       <div class="notice"><strong>Operação e próximas etapas</strong><p>WhatsApp e publicação nas lojas permanecem adiados. Push iOS depende da conta Apple e de APNs; mapas e rastreamento não estão disponíveis. A baixa de reembolso registra um pagamento já efetuado pela secretaria; não realiza transferência bancária.</p><p>A API permanece na hospedagem gratuita escolhida. Pode suspender por inatividade e atrasar agendamentos até retomar; o painel não precisa ficar aberto quando a API está ativa. Esta apresentação funciona independentemente desses serviços.</p></div>
@@ -99,7 +137,7 @@
       <div class="faq"><details><summary>Esta apresentação altera os dados da prefeitura?</summary><p>Não. Os exemplos são fictícios e ficam em memória nesta página. Reiniciar ou recarregar restaura os dados iniciais. Não há envio à API, cadastro de contas ou documentos reais.</p></details><details><summary>Como funciona a licença municipal?</summary><p>O gestor confirma o pagamento recebido fora do sistema. O responsável ativa um código exclusivo e os 12 meses começam na ativação. Vencimento da licença municipal e renovação acadêmica do estudante são regras diferentes.</p></details><details><summary>O que deve ser validado antes de usar em operação?</summary><p>Cadastros e documentos autorizados, acesso e permissões, homologação das integrações, backup e restauração, aparelhos Android/iOS e condições de implantação. A publicação dos artefatos não substitui essa homologação.</p></details></div>
     </div></section>
   </main>
-  <footer class="site-footer"><div class="wrap"><a class="brand" href="#conteudo"><img src="assets/icone.png" width="40" height="40" alt=""><span>Educa<span>Mov</span></span></a><p>Apresentação com dados fictícios · Revisada em 13/10/2026 · Versão 1.0.20<br><a href="https://github.com/LucasAlbertinazzi/EducaMove-demo/tree/main/apresentacao" target="_blank" rel="noopener noreferrer">Disponível no GitHub ↗</a></p></div></footer>
+  <footer class="site-footer"><div class="wrap"><a class="brand" href="#conteudo"><img src="assets/icone.png" width="40" height="40" alt=""><span>Educa<span>Mov</span></span></a><p>Apresentação com dados fictícios · Revisada em 14/10/2026 · Versão 1.0.20<br><a href="https://github.com/LucasAlbertinazzi/EducaMove-demo/tree/main/apresentacao" target="_blank" rel="noopener noreferrer">Disponível no GitHub ↗</a></p></div></footer>
   <div class="presentation-bar" id="presentation-bar" hidden><button class="button secondary" type="button" data-action="previous-chapter" aria-label="Seção anterior">←</button><span id="chapter-label" aria-live="polite"></span><button class="button primary" type="button" data-action="next-chapter" aria-label="Próxima seção">→</button><button class="text-button" type="button" data-action="exit-presentation">Sair <small>Esc</small></button></div>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 </body>

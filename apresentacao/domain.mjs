@@ -57,6 +57,8 @@ export function submitRequest(state, { name, amount, paymentDate, paymentDocumen
     id, protocol: `DEMO-2026-${String(state.nextId).padStart(4, '0')}`, studentId: 'demo-student',
     name: name.trim(), municipality: state.municipality, institution: 'Instituição de exemplo',
     month: '2026-10', amountCents, approvedCents: 0, status: 'in_review',
+    referencePercentage: state.percentages[state.municipality],
+    referenceCents: calculateReimbursement(amountCents, state.percentages[state.municipality]),
     frequencyValid: false, paymentValid: false, paymentDate, note: 'Aguardando conferência da secretaria.',
     history: ['Solicitação recebida com dois documentos fictícios.'],
   };
